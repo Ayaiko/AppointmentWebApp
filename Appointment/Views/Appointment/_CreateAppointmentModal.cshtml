@@ -1,0 +1,50 @@
+﻿@model Appointment.Models.AppointmentModel
+
+<div class="modal-content">
+    <!-- Modal Header -->
+    <div class="modal-header">
+        <h5 class="modal-title">Create Appointment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <!-- Modal Body (Form) -->
+    <div class="modal-body">
+        <form method="post" asp-action="Create">
+            <!-- Title -->
+            <div class="form-group">
+                <label for="Title">Title</label>
+                <input type="text" class="form-control" id="Title" name="Title" required>
+                <span class="text-danger" id="TitleError"></span>
+            </div>
+
+            <!-- Description -->
+            <div class="form-group">
+                <label for="Description">Description</label>
+                <textarea class="form-control" id="Description" name="Description" rows="3"></textarea>
+            </div>
+
+            <!-- Appointment Date -->
+            <div class="form-group">
+                <label for="Date">Appointment Date</label>
+                <input type="date" class="form-control" id="Date" name="Date" required>
+                <span class="text-danger" id="DateError"></span>
+            </div>
+
+            <!-- Location -->
+            <div class="form-group">
+                <label for="Location">Location</label>
+                <input type="text" class="form-control" id="Location" name="Location" maxlength="200">
+            </div>
+
+            <input type="hidden" id="UserId" name="UserId" value="@ViewBag.UserId" />
+
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="modal-footer">
+    </div>
+</div>

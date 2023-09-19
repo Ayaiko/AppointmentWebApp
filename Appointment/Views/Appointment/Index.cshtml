@@ -1,0 +1,44 @@
+﻿@model List<AppointmentModel>
+
+<h1>Appointments</h1>
+
+<button type="button" class="btn btn-primary" id="openModalButton" data-toggle="modal" data-target="#myModal">Create Appointment</button>
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        @await Html.PartialAsync("_CreateAppointmentModal", new AppointmentModel())
+    </div>
+</div>
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var appointment in Model)
+        {
+            <tr>
+                <td>@appointment.Title</td>
+                <td>@appointment.Date.ToShortDateString()</td>
+                <td>@appointment.Location</td>
+                <td>@appointment.Description</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@appointment.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@appointment.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@appointment.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
