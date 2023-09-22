@@ -13,6 +13,14 @@ namespace Appointment.Models
         [Display(Name = "Appointment Date")]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
+        public TimeSpan StartTime { get; set; }
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
+        public TimeSpan EndTime { get; set; }
+
+
         [StringLength(200, ErrorMessage = "Location must not exceed 200 characters.")]
         public string? Location { get; set; }
 

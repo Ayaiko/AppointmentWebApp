@@ -10,6 +10,13 @@
     </div>
 </div>
 
+<form asp-controller="Appointment" asp-action="Index" method="get">
+    <p>
+        Title: <input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
 <table class="table">
 
     <thead>
@@ -18,6 +25,7 @@
             <th>Date</th>
             <th>Location</th>
             <th>Description</th>
+            <th>Time</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -29,6 +37,8 @@
                 <td>@appointment.Date.ToShortDateString()</td>
                 <td>@appointment.Location</td>
                 <td>@appointment.Description</td>
+                <td>@appointment.StartTime.Hours:@appointment.StartTime.Minutes - 
+                    @appointment.EndTime.Hours:@appointment.EndTime.Minutes</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@appointment.Id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@appointment.Id">Details</a> |

@@ -23,6 +23,24 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Description)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+        <dt class="col-sm-2">
+            Time
+        </dt>
+        <dd class="col-sm-10">
+            @Model.StartTime.Hours.ToString("D2"):@Model.StartTime.Minutes.ToString("D2") - @Model.EndTime.Hours.ToString("D2"):@Model.EndTime.Minutes.ToString("D2")
+        </dd>
     </dl>
 
     <form asp-action="Delete">

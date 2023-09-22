@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.IdentityModel.Tokens;
 
 namespace Appointment.Controllers
 {
@@ -22,14 +22,15 @@ namespace Appointment.Controllers
             _userManager = userManager;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
             var user = await _userManager.GetUserAsync(User);
 
             if (user != null)
             {
+
                 var userAppointment = await _context.Appointment
-                    .Where(a => a.UserId == user.Id)
+                    .Where(a => a.UserId == user.Id && (searchString.IsNullOrEmpty() || a.Title.Contains(searchString) ) )
                     .ToListAsync();
 
                 ViewBag.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -37,7 +38,6 @@ namespace Appointment.Controllers
                 return View(userAppointment);
 
             }
-
             return Problem("User not found");
 
         }
@@ -106,6 +106,11 @@ namespace Appointment.Controllers
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Calendar()
+        {
+            return View();
         }
     }
 }

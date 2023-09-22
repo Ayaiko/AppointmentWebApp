@@ -25,6 +25,20 @@
                 <textarea class="form-control" id="Description" name="Description" rows="3"></textarea>
             </div>
 
+            <div class="modal-body">
+                <!-- Start Time Dropdown -->
+                <label for="startTime">Start Time:</label>
+                <select id="startTime" name="startTime">
+                    <!-- Add options for hours and minutes here -->
+                </select>
+
+                <!-- End Time Dropdown -->
+                <label for="endTime">End Time:</label>
+                <select id="endTime" name="endTime">
+                    <!-- Add options for hours and minutes here -->
+                </select>
+            </div>
+
             <!-- Appointment Date -->
             <div class="form-group">
                 <label for="Date">Appointment Date</label>
@@ -48,3 +62,24 @@
     <div class="modal-footer">
     </div>
 </div>
+
+<script>
+    // JavaScript to populate the time dropdowns
+    document.addEventListener("DOMContentLoaded", function () {
+        // Function to populate time options
+        function populateTimeSelect(selectId) {
+            var select = document.getElementById(selectId);
+            for (var hour = 0; hour <= 23; hour++) {
+                for (var minute = 0; minute <= 45; minute += 15) {
+                    var option = document.createElement("option");
+                    option.text = hour.toString().padStart(2, "0") + ":" + minute.toString().padStart(2, "0");
+                    select.add(option);
+                }
+            }
+        }
+
+        // Populate start and end time dropdowns
+        populateTimeSelect("startTime");
+        populateTimeSelect("endTime");
+    });
+</script>
